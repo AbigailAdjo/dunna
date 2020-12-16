@@ -1,0 +1,128 @@
+
+
+entity PasswordStory {
+  content String required,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String
+}
+
+entity EmailStory {
+  content String required,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String
+}
+
+entity AddressStory {
+  content String required,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String
+}
+
+entity PhoneNumberStory {
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String,
+  phoneNumber String required,
+}
+
+entity Partner{
+  name String,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String,
+  partnerType PartnerType
+}
+
+entity Country {
+  countryName String required,
+  countryCodeAlpha String required maxlength(3),
+  countryCode String required,
+  countryFlag String,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String
+}
+
+entity Region {
+  regionName String required,
+  regionCode String required,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String
+}
+
+entity UserExtended{
+  genderType Gender,
+  name String,
+  lastname String,
+  phoneNumber String required,
+  responsible Boolean,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String,
+  avatar ImageBlob,
+  lastLogin Instant
+}
+
+entity Visitor{
+  genderType Gender,
+  name String,
+  lastname String,
+  idcardType IdcardType,
+  cardExpiringDate String,
+  birthDate String,
+  cardNumber String,
+}
+
+enum Status {
+  ENABLE,
+  DESABLE
+}
+
+enum Gender {
+  MALE,
+  FEMALE
+}
+
+enum PartnerType {
+  CORPORATION,
+  PHYSICALPERSON
+}
+
+enum IdcardType {
+  Idcard,
+  Passport
+}
+
+relationship ManyToMany {
+  User{Partner} to Partner{User},
+  Country{Region} to Region{Country},
+  Visitor{Partner} to Partner{Visitor}
+}
+
+relationship OneToMany {
+  EmailStory{UserExtended} to UserExtended,
+  EmailStory{Partner} to Partner,
+  PhoneNumberStory{Partner} to Partner,
+  AddressStory{Partner} to Partner,
+  PasswordStory{UserExtended} to UserExtended,
+  Partner{Country} to Country,
+}
+
+relationship OneToOne {
+  UserExtended{User} to User
+  Visitor{Country} to Country
+  Visitor{Country} to Country
+}
+    
