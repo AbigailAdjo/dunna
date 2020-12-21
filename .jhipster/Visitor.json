@@ -1,0 +1,74 @@
+{
+  "name": "Visitor",
+  "fields": [
+    {
+      "fieldName": "genderType",
+      "fieldType": "Gender",
+      "fieldValues": "MALE,FEMALE"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idcardType",
+      "fieldType": "IdcardType",
+      "fieldValues": "Idcard,Passport"
+    },
+    {
+      "fieldName": "cardExpiringDate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cardNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cardCountry",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nationality",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "partner",
+      "otherEntityRelationshipName": "visitor",
+      "relationshipName": "partner"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "country",
+      "otherEntityRelationshipName": "v",
+      "relationshipName": "c"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "country",
+      "otherEntityRelationshipName": "v",
+      "relationshipName": "c"
+    }
+  ],
+  "changelogDate": "20201221104724",
+  "entityTableName": "visitor",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

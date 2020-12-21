@@ -1,0 +1,32 @@
+{
+  "dunnaApp": {
+    "userExtended": {
+      "home": {
+        "title": "UserExtendeds",
+        "createLabel": "Créer un nouveau User Extended",
+        "createOrEditLabel": "Créer ou éditer un User Extended",
+        "search": "Recherche pour User Extended",
+        "notFound": "Aucun User Extended trouvé"
+      },
+      "created": "Un nouveau User Extended a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Extended avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Extended avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le User Extended {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Extended"
+      },
+      "genderType": "Gender Type",
+      "phone": "Phone",
+      "responsible": "Responsible",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "createdBy": "Created By",
+      "updatedBy": "Updated By",
+      "avatar": "Avatar",
+      "lastLogin": "Last Login",
+      "user": "User"
+    }
+  }
+}

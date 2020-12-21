@@ -1,0 +1,104 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="dunnaApp.userExtended.home.title">User Extendeds</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-user-extended" [routerLink]="['/user-extended/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="dunnaApp.userExtended.home.createLabel">
+            Create a new User Extended
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'dunnaApp.userExtended.home.search' | translate }}">
+
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+
+                    <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                        <fa-icon icon="trash-alt"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="userExtendeds?.length === 0">
+        <span jhiTranslate="dunnaApp.userExtended.home.notFound">No userExtendeds found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="userExtendeds && userExtendeds.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.genderType">Gender Type</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.phone">Phone</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.responsible">Responsible</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.createdAt">Created At</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.updatedAt">Updated At</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.createdBy">Created By</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.updatedBy">Updated By</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.avatar">Avatar</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.lastLogin">Last Login</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.userExtended.user">User</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let userExtended of userExtendeds ;trackBy: trackId">
+                    <td><a [routerLink]="['/user-extended', userExtended.id, 'view']">{{ userExtended.id }}</a></td>
+                    <td jhiTranslate="{{ 'dunnaApp.Gender.' + userExtended.genderType }}">{{ userExtended.genderType }}</td>
+                    <td>{{ userExtended.phone }}</td>
+                    <td>{{ userExtended.responsible }}</td>
+                    <td>{{ userExtended.createdAt | date:'medium' }}</td>
+                    <td>{{ userExtended.updatedAt | date:'medium' }}</td>
+                    <td>{{ userExtended.createdBy }}</td>
+                    <td>{{ userExtended.updatedBy }}</td>
+                    <td>
+                        <a *ngIf="userExtended.avatar" (click)="openFile(userExtended.avatarContentType, userExtended.avatar)">
+                            <img [src]="'data:' + userExtended.avatarContentType + ';base64,' + userExtended.avatar" style="max-height: 30px;" alt="userExtended image"/>
+                        </a>
+                        <span *ngIf="userExtended.avatar">{{ userExtended.avatarContentType }}, {{ byteSize(userExtended.avatar) }}</span>
+                    </td>
+                    <td>{{ userExtended.lastLogin | date:'medium' }}</td>
+                    <td>
+                        {{ userExtended.user?.id }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/user-extended', userExtended.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/user-extended', userExtended.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(userExtended)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

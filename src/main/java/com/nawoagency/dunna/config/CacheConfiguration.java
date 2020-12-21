@@ -47,6 +47,16 @@ public class CacheConfiguration {
             createCache(cm, com.nawoagency.dunna.domain.User.class.getName());
             createCache(cm, com.nawoagency.dunna.domain.Authority.class.getName());
             createCache(cm, com.nawoagency.dunna.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.nawoagency.dunna.domain.Partner.class.getName());
+            createCache(cm, com.nawoagency.dunna.domain.Partner.class.getName() + ".countries");
+            createCache(cm, com.nawoagency.dunna.domain.Partner.class.getName() + ".users");
+            createCache(cm, com.nawoagency.dunna.domain.Country.class.getName());
+            createCache(cm, com.nawoagency.dunna.domain.Region.class.getName());
+            createCache(cm, com.nawoagency.dunna.domain.Region.class.getName() + ".countries");
+            createCache(cm, com.nawoagency.dunna.domain.UserExtended.class.getName());
+            createCache(cm, com.nawoagency.dunna.domain.Visitor.class.getName());
+            createCache(cm, com.nawoagency.dunna.domain.Visitor.class.getName() + ".partners");
+            createCache(cm, com.nawoagency.dunna.domain.Visitor.class.getName() + ".cs");
             // jhipster-needle-ehcache-add-entry
         };
     }

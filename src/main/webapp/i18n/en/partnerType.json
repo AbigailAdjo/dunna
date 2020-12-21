@@ -1,0 +1,9 @@
+{
+  "dunnaApp": {
+    "PartnerType": {
+      "null": "",
+      "CORPORATION": "CORPORATION",
+      "PHYSICALPERSON": "PHYSICALPERSON"
+    }
+  }
+}

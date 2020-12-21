@@ -1,0 +1,89 @@
+entity Partner{
+  name String,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String,
+  email String,
+  address String,
+  phone String,
+  partnerType PartnerType
+}
+
+entity Country {
+  countryName String required,
+  countryCodeAlpha String required maxlength(3),
+  countryCode String required,
+  countryFlag String,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String
+}
+
+entity Region {
+  regionName String required,
+  regionCode String required,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String
+}
+
+entity UserExtended{
+  genderType Gender,
+  phone String required,
+  responsible Boolean,
+  createdAt Instant,
+  updatedAt Instant,
+  createdBy String,
+  updatedBy String,
+  avatar ImageBlob,
+  lastLogin Instant
+}
+
+entity Visitor{
+  genderType Gender,
+  name String,
+  lastname String,
+  idcardType IdcardType,
+  cardExpiringDate String,
+  birthDate String,
+  cardNumber String,
+  cardCountry Integer,
+  nationality Integer,
+}
+
+enum Status {
+  ENABLE,
+  DESABLE
+}
+
+enum Gender {
+  MALE,
+  FEMALE
+}
+
+enum PartnerType {
+  CORPORATION,
+  PHYSICALPERSON
+}
+
+enum IdcardType {
+  Idcard,
+  Passport
+}
+
+relationship OneToMany {
+  Region{Country} to Country,
+  Visitor{Partner} to Partner,
+  Visitor{c(id)} to Country{v(cardCountry)},
+  Visitor{c(id)} to Country{v(nationality)},
+  Partner{Country} to Country,
+  Partner{User} to User,
+}
+
+relationship OneToOne {
+  UserExtended{User} to User
+}
+    

@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-visitor-heading" jhiTranslate="dunnaApp.visitor.home.createOrEditLabel">Create or edit a Visitor</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.genderType" for="field_genderType">Gender Type</label>
+                    <select class="form-control" name="genderType" formControlName="genderType" id="field_genderType">
+                        <option value="MALE">{{ 'dunnaApp.Gender.MALE' | translate }}</option>
+                        <option value="FEMALE">{{ 'dunnaApp.Gender.FEMALE' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.lastname" for="field_lastname">Lastname</label>
+                    <input type="text" class="form-control" name="lastname" id="field_lastname"
+                           formControlName="lastname"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.idcardType" for="field_idcardType">Idcard Type</label>
+                    <select class="form-control" name="idcardType" formControlName="idcardType" id="field_idcardType">
+                        <option value="Idcard">{{ 'dunnaApp.IdcardType.Idcard' | translate }}</option>
+                        <option value="Passport">{{ 'dunnaApp.IdcardType.Passport' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.cardExpiringDate" for="field_cardExpiringDate">Card Expiring Date</label>
+                    <input type="text" class="form-control" name="cardExpiringDate" id="field_cardExpiringDate"
+                           formControlName="cardExpiringDate"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.birthDate" for="field_birthDate">Birth Date</label>
+                    <input type="text" class="form-control" name="birthDate" id="field_birthDate"
+                           formControlName="birthDate"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.cardNumber" for="field_cardNumber">Card Number</label>
+                    <input type="text" class="form-control" name="cardNumber" id="field_cardNumber"
+                           formControlName="cardNumber"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.cardCountry" for="field_cardCountry">Card Country</label>
+                    <input type="number" class="form-control" name="cardCountry" id="field_cardCountry"
+                           formControlName="cardCountry"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.visitor.nationality" for="field_nationality">Nationality</label>
+                    <input type="number" class="form-control" name="nationality" id="field_nationality"
+                           formControlName="nationality"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
