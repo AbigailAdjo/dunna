@@ -1,0 +1,111 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-user-extended-heading" jhiTranslate="dunnaApp.userExtended.home.createOrEditLabel">Create or edit a User Extended</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.genderType" for="field_genderType">Gender Type</label>
+                    <select class="form-control" name="genderType" formControlName="genderType" id="field_genderType">
+                        <option value="MALE">{{ 'dunnaApp.Gender.MALE' | translate }}</option>
+                        <option value="FEMALE">{{ 'dunnaApp.Gender.FEMALE' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                           formControlName="phone"/>
+                    <div *ngIf="editForm.get('phone')!.invalid && (editForm.get('phone')!.dirty || editForm.get('phone')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phone')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.responsible" for="field_responsible">Responsible</label>
+                    <input type="checkbox" class="form-control" name="responsible" id="field_responsible"
+                           formControlName="responsible"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.updatedAt" for="field_updatedAt">Updated At</label>
+                    <div class="d-flex">
+                        <input id="field_updatedAt" type="datetime-local" class="form-control" name="updatedAt" formControlName="updatedAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.createdBy" for="field_createdBy">Created By</label>
+                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                           formControlName="createdBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.updatedBy" for="field_updatedBy">Updated By</label>
+                    <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
+                           formControlName="updatedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.avatar" for="field_avatar">Avatar</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('avatarContentType')!.value + ';base64,' + editForm.get('avatar')!.value" style="max-height: 100px;" *ngIf="editForm.get('avatar')!.value" alt="userExtended image"/>
+                        <div *ngIf="editForm.get('avatar')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('avatarContentType')!.value }}, {{ byteSize(editForm.get('avatar')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('avatar', 'avatarContentType', 'file_avatar')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_avatar" (change)="setFileData($event, 'avatar', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="avatar" id="field_avatar"
+                           formControlName="avatar"/>
+                    <input type="hidden" class="form-control" name="avatarContentType" id="field_avatarContentType"
+                           formControlName="avatarContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.lastLogin" for="field_lastLogin">Last Login</label>
+                    <div class="d-flex">
+                        <input id="field_lastLogin" type="datetime-local" class="form-control" name="lastLogin" formControlName="lastLogin" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.userExtended.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

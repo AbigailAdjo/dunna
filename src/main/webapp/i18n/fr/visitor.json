@@ -1,0 +1,34 @@
+{
+  "dunnaApp": {
+    "visitor": {
+      "home": {
+        "title": "Visitors",
+        "createLabel": "Créer un nouveau Visitor",
+        "createOrEditLabel": "Créer ou éditer un Visitor",
+        "search": "Recherche pour Visitor",
+        "notFound": "Aucun Visitor trouvé"
+      },
+      "created": "Un nouveau Visitor a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Visitor avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Visitor avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Visitor {{ id }} ?"
+      },
+      "detail": {
+        "title": "Visitor"
+      },
+      "genderType": "Gender Type",
+      "name": "Name",
+      "lastname": "Lastname",
+      "idcardType": "Idcard Type",
+      "cardExpiringDate": "Card Expiring Date",
+      "birthDate": "Birth Date",
+      "cardNumber": "Card Number",
+      "cardCountry": "Card Country",
+      "nationality": "Nationality",
+      "partner": "Partner",
+      "country": "Country",
+      "country": "Country"
+    }
+  }
+}

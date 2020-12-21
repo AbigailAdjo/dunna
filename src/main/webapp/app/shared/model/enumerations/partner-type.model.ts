@@ -1,0 +1,5 @@
+export const enum PartnerType {
+  CORPORATION = 'CORPORATION',
+
+  PHYSICALPERSON = 'PHYSICALPERSON',
+}
