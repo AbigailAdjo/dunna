@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="country">
+            <h2><span jhiTranslate="dunnaApp.country.detail.title">Country</span> {{ country.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="dunnaApp.country.countryName">Country Name</span></dt>
+                <dd>
+                    <span>{{ country.countryName }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.countryCodeAlpha">Country Code Alpha</span></dt>
+                <dd>
+                    <span>{{ country.countryCodeAlpha }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.countryCode">Country Code</span></dt>
+                <dd>
+                    <span>{{ country.countryCode }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.countryFlag">Country Flag</span></dt>
+                <dd>
+                    <span>{{ country.countryFlag }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{ country.createdAt }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.updatedAt">Updated At</span></dt>
+                <dd>
+                    <span>{{ country.updatedAt }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{ country.createdBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.updatedBy">Updated By</span></dt>
+                <dd>
+                    <span>{{ country.updatedBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.region">Region</span></dt>
+                <dd>
+                    <div *ngIf="country.region">
+                        <a [routerLink]="['/region', country.region?.id, 'view']">{{ country.region?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.v">V</span></dt>
+                <dd>
+                    <div *ngIf="country.v">
+                        <a [routerLink]="['/visitor', country.v?.id, 'view']">{{ country.v?.cardCountry }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.v">V</span></dt>
+                <dd>
+                    <div *ngIf="country.v">
+                        <a [routerLink]="['/visitor', country.v?.id, 'view']">{{ country.v?.nationality }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.country.partner">Partner</span></dt>
+                <dd>
+                    <div *ngIf="country.partner">
+                        <a [routerLink]="['/partner', country.partner?.id, 'view']">{{ country.partner?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/country', country.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

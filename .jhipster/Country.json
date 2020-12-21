@@ -1,0 +1,89 @@
+{
+  "name": "Country",
+  "fields": [
+    {
+      "fieldName": "countryName",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "countryCodeAlpha",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "3"
+    },
+    {
+      "fieldName": "countryCode",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "countryFlag",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "region",
+      "otherEntityRelationshipName": "country",
+      "relationshipName": "region",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "visitor",
+      "otherEntityRelationshipName": "c",
+      "relationshipName": "v",
+      "otherEntityField": "cardCountry"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "visitor",
+      "otherEntityRelationshipName": "c",
+      "relationshipName": "v",
+      "otherEntityField": "nationality"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "partner",
+      "otherEntityRelationshipName": "country",
+      "relationshipName": "partner",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201221104424",
+  "entityTableName": "country",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

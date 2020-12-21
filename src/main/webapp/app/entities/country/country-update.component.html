@@ -1,0 +1,130 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-country-heading" jhiTranslate="dunnaApp.country.home.createOrEditLabel">Create or edit a Country</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.countryName" for="field_countryName">Country Name</label>
+                    <input type="text" class="form-control" name="countryName" id="field_countryName"
+                           formControlName="countryName"/>
+                    <div *ngIf="editForm.get('countryName')!.invalid && (editForm.get('countryName')!.dirty || editForm.get('countryName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('countryName')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.countryCodeAlpha" for="field_countryCodeAlpha">Country Code Alpha</label>
+                    <input type="text" class="form-control" name="countryCodeAlpha" id="field_countryCodeAlpha"
+                           formControlName="countryCodeAlpha"/>
+                    <div *ngIf="editForm.get('countryCodeAlpha')!.invalid && (editForm.get('countryCodeAlpha')!.dirty || editForm.get('countryCodeAlpha')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('countryCodeAlpha')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('countryCodeAlpha')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 3 }">
+                        This field cannot be longer than 3 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.countryCode" for="field_countryCode">Country Code</label>
+                    <input type="text" class="form-control" name="countryCode" id="field_countryCode"
+                           formControlName="countryCode"/>
+                    <div *ngIf="editForm.get('countryCode')!.invalid && (editForm.get('countryCode')!.dirty || editForm.get('countryCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('countryCode')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.countryFlag" for="field_countryFlag">Country Flag</label>
+                    <input type="text" class="form-control" name="countryFlag" id="field_countryFlag"
+                           formControlName="countryFlag"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.updatedAt" for="field_updatedAt">Updated At</label>
+                    <div class="d-flex">
+                        <input id="field_updatedAt" type="datetime-local" class="form-control" name="updatedAt" formControlName="updatedAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.createdBy" for="field_createdBy">Created By</label>
+                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                           formControlName="createdBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.updatedBy" for="field_updatedBy">Updated By</label>
+                    <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
+                           formControlName="updatedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.region" for="field_region">Region</label>
+                    <select class="form-control" id="field_region" name="region" formControlName="region">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="regionOption.id === editForm.get('region')!.value?.id ? editForm.get('region')!.value : regionOption" *ngFor="let regionOption of regions; trackBy: trackById">{{ regionOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.v" for="field_v">V</label>
+                    <select class="form-control" id="field_v" name="v" formControlName="v">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="visitorOption.id === editForm.get('v')!.value?.id ? editForm.get('v')!.value : visitorOption" *ngFor="let visitorOption of visitors; trackBy: trackById">{{ visitorOption.cardCountry }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.v" for="field_v">V</label>
+                    <select class="form-control" id="field_v" name="v" formControlName="v">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="visitorOption.id === editForm.get('v')!.value?.id ? editForm.get('v')!.value : visitorOption" *ngFor="let visitorOption of visitors; trackBy: trackById">{{ visitorOption.nationality }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dunnaApp.country.partner" for="field_partner">Partner</label>
+                    <select class="form-control" id="field_partner" name="partner" formControlName="partner">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="partnerOption.id === editForm.get('partner')!.value?.id ? editForm.get('partner')!.value : partnerOption" *ngFor="let partnerOption of partners; trackBy: trackById">{{ partnerOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

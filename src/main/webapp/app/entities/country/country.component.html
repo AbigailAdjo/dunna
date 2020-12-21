@@ -1,0 +1,117 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="dunnaApp.country.home.title">Countries</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-country" [routerLink]="['/country/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="dunnaApp.country.home.createLabel">
+            Create a new Country
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'dunnaApp.country.home.search' | translate }}">
+
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+
+                    <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                        <fa-icon icon="trash-alt"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="countries?.length === 0">
+        <span jhiTranslate="dunnaApp.country.home.notFound">No countries found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="countries && countries.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.countryName">Country Name</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.countryCodeAlpha">Country Code Alpha</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.countryCode">Country Code</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.countryFlag">Country Flag</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.createdAt">Created At</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.updatedAt">Updated At</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.createdBy">Created By</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.updatedBy">Updated By</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.region">Region</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.v">V</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.v">V</span></th>
+                    <th scope="col" ><span jhiTranslate="dunnaApp.country.partner">Partner</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let country of countries ;trackBy: trackId">
+                    <td><a [routerLink]="['/country', country.id, 'view']">{{ country.id }}</a></td>
+                    <td>{{ country.countryName }}</td>
+                    <td>{{ country.countryCodeAlpha }}</td>
+                    <td>{{ country.countryCode }}</td>
+                    <td>{{ country.countryFlag }}</td>
+                    <td>{{ country.createdAt | date:'medium' }}</td>
+                    <td>{{ country.updatedAt | date:'medium' }}</td>
+                    <td>{{ country.createdBy }}</td>
+                    <td>{{ country.updatedBy }}</td>
+                    <td>
+                        <div *ngIf="country.region">
+                            <a [routerLink]="['/region', country.region?.id, 'view']" >{{ country.region?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="country.v">
+                            <a [routerLink]="['/visitor', country.v?.id, 'view']" >{{ country.v?.cardCountry }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="country.v">
+                            <a [routerLink]="['/visitor', country.v?.id, 'view']" >{{ country.v?.nationality }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="country.partner">
+                            <a [routerLink]="['/partner', country.partner?.id, 'view']" >{{ country.partner?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/country', country.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/country', country.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(country)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

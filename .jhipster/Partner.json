@@ -1,0 +1,74 @@
+{
+  "name": "Partner",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "partnerType",
+      "fieldType": "PartnerType",
+      "fieldValues": "CORPORATION,PHYSICALPERSON"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "country",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "country"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "user"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "visitor",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "visitor",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201221104324",
+  "entityTableName": "partner",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
