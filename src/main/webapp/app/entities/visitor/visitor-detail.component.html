@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="visitor">
+            <h2><span jhiTranslate="dunnaApp.visitor.detail.title">Visitor</span> {{ visitor.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="dunnaApp.visitor.genderType">Gender Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'dunnaApp.Gender.' + visitor.genderType }}">{{ visitor.genderType }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.visitor.name">Name</span></dt>
+                <dd>
+                    <span>{{ visitor.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.visitor.lastname">Lastname</span></dt>
+                <dd>
+                    <span>{{ visitor.lastname }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.visitor.idcardType">Idcard Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'dunnaApp.IdcardType.' + visitor.idcardType }}">{{ visitor.idcardType }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.visitor.cardExpiringDate">Card Expiring Date</span></dt>
+                <dd>
+                    <span>{{ visitor.cardExpiringDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.visitor.birthDate">Birth Date</span></dt>
+                <dd>
+                    <span>{{ visitor.birthDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.visitor.cardNumber">Card Number</span></dt>
+                <dd>
+                    <span>{{ visitor.cardNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.visitor.cardCountry">Card Country</span></dt>
+                <dd>
+                    <span>{{ visitor.cardCountry }}</span>
+                </dd>
+                <dt><span jhiTranslate="dunnaApp.visitor.nationality">Nationality</span></dt>
+                <dd>
+                    <span>{{ visitor.nationality }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/visitor', visitor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

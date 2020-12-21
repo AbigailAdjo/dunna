@@ -1,0 +1,9 @@
+{
+  "dunnaApp": {
+    "IdcardType": {
+      "null": "",
+      "Idcard": "Idcard",
+      "Passport": "Passport"
+    }
+  }
+}
